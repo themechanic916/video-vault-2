@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <title>Video Vault</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div><h1>Video Vault</h1><p>Organize, upload and play your videos.</p></div>
+  <button id="settingsBtn" class="ghost">Settings</button>
+</header>
+
+<main>
+  <section class="panel">
+    <h2>Add videos</h2>
+    <label id="dropzone" class="dropzone">
+      <input id="fileInput" type="file" accept="video/*" multiple hidden>
+      <span>Choose videos or drag them here</span>
+    </label>
+    <div class="row">
+      <input id="categoryInput" placeholder="Category, e.g. Bikes">
+      <input id="tagsInput" placeholder="Tags, comma separated">
+    </div>
+    <button id="uploadBtn">Add selected videos</button>
+    <p id="uploadStatus" class="muted"></p>
+  </section>
+
+  <section class="panel toolbar">
+    <input id="searchInput" placeholder="Search videos">
+    <select id="categoryFilter"><option value="">All categories</option></select>
+    <select id="sortSelect">
+      <option value="newest">Newest</option>
+      <option value="oldest">Oldest</option>
+      <option value="name">Name</option>
+      <option value="size">Size</option>
+    </select>
+  </section>
+
+  <section class="panel">
+    <video id="player" controls playsinline></video>
+    <div class="now"><strong id="nowPlaying">Nothing playing</strong><span id="nowMeta"></span></div>
+    <details open>
+      <summary>10-band equalizer</summary>
+      <div id="eq" class="eq"></div>
+      <div class="eq-actions">
+        <button class="ghost preset" data-preset="flat">Flat</button>
+        <button class="ghost preset" data-preset="bass">Bass Boost</button>
+        <button class="ghost preset" data-preset="voice">Voice</button>
+        <button class="ghost preset" data-preset="treble">Treble</button>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Your Library</h2><span id="countLabel">0 videos</span></div>
+    <div id="library" class="grid"></div>
+    <div id="emptyState" class="empty">No videos yet.</div>
+  </section>
+</main>
+
+<dialog id="settingsDialog">
+  <form method="dialog" class="settings">
+    <div class="section-head"><h2>Cloud Storage</h2><button class="ghost">Close</button></div>
+    <p class="muted">Connect Supabase to move videos off your device. Local preview mode does not back them up.</p>
+    <label>Supabase Project URL<input id="supabaseUrl" placeholder="https://xxxx.supabase.co"></label>
+    <label>Supabase anon/publishable key<input id="supabaseKey" placeholder="eyJ..."></label>
+    <label>Email<input id="email" type="email"></label>
+    <label>Password<input id="password" type="password"></label>
+    <div class="row">
+      <button type="button" id="saveSettings">Save</button>
+      <button type="button" id="signUpBtn" class="ghost">Sign up</button>
+      <button type="button" id="signInBtn" class="ghost">Sign in</button>
+      <button type="button" id="signOutBtn" class="danger">Sign out</button>
+    </div>
+    <p id="authStatus" class="muted"></p>
+  </form>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>
