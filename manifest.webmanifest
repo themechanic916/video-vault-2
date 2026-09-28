@@ -1,0 +1,17 @@
+{
+  "name": "Video Vault",
+  "short_name": "Video Vault",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b0b0b",
+  "theme_color": "#111111",
+  "description": "Organize, upload and play your videos.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
